@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Username Checker</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 50px;
+    }
+    input {
+      padding: 8px;
+      font-size: 16px;
+      width: 300px;
+    }
+    #result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Check Username Availability</h2>
+  <input type="text" id="username" placeholder="Enter a username..." />
+  <div id="result"></div>
+
+  <script>
+    let timeoutId;
+
+    $('#username').on('input', function () {
+      clearTimeout(timeoutId);
+      const username = $(this).val().trim();
+
+      if (username.length < 3) {
+        $('#result').text('Please enter at least 3 characters').css('color', 'gray');
+        return;
+      }
+
+      timeoutId = setTimeout(function () {
+        $.get(`http://localhost:8000/check/${username}`, function (data) {
+          if (data.available) {
+            $('#result').text(`✅ '${username}' is available`).css('color', 'green');
+          } else {
+            $('#result').text(`❌ '${username}' is taken`).css('color', 'red');
+          }
+        }).fail(function () {
+          $('#result').text('Error checking username').css('color', 'orange');
+        });
+      }, 300); // debounce by 300ms
+    });
+  </script>
+
+</body>
+</html>

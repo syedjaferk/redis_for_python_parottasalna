@@ -1,0 +1,9 @@
+Architecture Flow: https://miro.com/app/board/uXjVI1uDVG4=/?share_link_id=833824648901
+
+Docker Redis: 
+
+docker run -d --name redis-server redis:latest
+docker exec -it redis-server redis-cli
+
+Cheat Sheet: https://redis.io/learn/howtos/quick-start/cheat-sheet#stringsnumbers
+

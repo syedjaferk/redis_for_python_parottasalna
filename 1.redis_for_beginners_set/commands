@@ -1,0 +1,11 @@
+SADD product:views:bowtie42 alice bob chuck dave
+
+SMEMBERS product:views:bowtie42
+
+ SCARD product:views:bowtie42
+
+ SREM product:views:bowtie42 chuck dave
+
+ SMEMBERS product:views:bowtie42
+
+ 

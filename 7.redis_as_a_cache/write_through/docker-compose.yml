@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  redisgears:
+    image: redislabs/redismod:latest
+    container_name: redis_gears_container
+    networks:
+      - my_network
+    ports:
+      - "6379:6379"
+    environment:
+      - MONGO_URI=mongodb://mongodb_container:27017
+
+  mongodb:
+    image: mongo
+    container_name: mongodb_container
+    networks:
+      - my_network
+    ports:
+      - "27017:27017"
+    command: --bind_ip_all
+
+networks:
+  my_network:
+    driver: bridge

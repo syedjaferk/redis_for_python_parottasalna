@@ -1,0 +1,23 @@
+Redis Keys:
+    Data Type: Binary-safe strings.
+    Max Size: Up to 512 MB.
+    Naming Rules: Any binary sequence is allowed (but readable UTF-8 strings are preferred).
+    Best Practices:
+        Use colon-separated namespaces, e.g., user:1001:name
+        Avoid long or overly nested key names
+        Don't use large numbers of keys with common prefixes unless needed (can impact performance)
+
+
+| Requirement                 | Redis Key Example       | Value Type  | Usage                  |
+| --------------------------- | ----------------------- | ----------- | ---------------------- |
+| Store user profile          | `user:1001`             | Hash        | Name, email, age, etc. |
+| Recent feed items           | `feed:1001`             | List        | Recent posts           |
+| Followers                   | `followers:1001`        | Set         | Unique user IDs        |
+| User score                  | `leaderboard`           | Sorted Set  | Track points           |
+| Email verification token    | `verify:token:abcd1234` | String      | TTL for expiry         |
+| Unique daily visitors count | `visitors:2025-05-15`   | HyperLogLog | Estimate daily uniques |
+| Chat messages               | `chat:room:devtalks`    | Stream      | Real-time chat         |
+
+
+
+

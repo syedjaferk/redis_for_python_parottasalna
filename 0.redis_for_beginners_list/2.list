@@ -1,0 +1,60 @@
+LPUSH key value	- Push value to the left	LPUSH tasks "task1"
+RPUSH key value	- Push value to the right	RPUSH tasks "task2"
+LPOP key	- Remove & get the leftmost value	LPOP tasks → "task1"
+RPOP key	- Remove & get the rightmost value	RPOP tasks → "task2"
+LRANGE key start stop	- Get a range of elements	LRANGE tasks 0 -1
+LLEN key	- Get list length	LLEN tasks
+
+1. Message Queue / Task Queue
+2. Logging System
+3. Live Feed / Timeline (FIFO)
+
+Some Examples: 
+https://medium.com/@SaiRahulAkarapu/rate-limiting-algorithms-using-redis-eb4427b47e33
+
+
+Basic Push and Pop
+Stack Simulation (LIFO)
+Queue Simulation (FIFO)
+Chat Message Trimmer
+Logging with Timestamps
+
+
+
+DEL groceries
+RPUSH groceries "milk" "bread" "eggs"
+LPOP groceries
+LRANGE groceries 0 -1
+
+DEL task_stack
+LPUSH task_stack "task1" "task2" "task3"  # top of stack is task3
+LPOP task_stack
+LPOP task_stack
+LPOP task_stack
+
+DEL job_queue
+LPUSH job_queue "job1"
+LPUSH job_queue "job2"
+LPUSH job_queue "job3"
+RPOP job_queue  # job1
+RPOP job_queue  # job2
+RPOP job_queue  # job3
+
+
+DEL chat:room1
+RPUSH chat:room1 "msg1" "msg2" "msg3" "msg4" "msg5" "msg6" "msg7"
+LTRIM chat:room1 -5 -1
+LRANGE chat:room1 0 -1
+
+
+DEL logs
+RPUSH logs "Login:1715763101"
+RPUSH logs "Upload:1715763110"
+RPUSH logs "Logout:1715763125"
+RPUSH logs "Download:1715763133"
+LTRIM logs -3 -1
+LRANGE logs 0 -1
+
+
+
+

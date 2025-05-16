@@ -1,0 +1,8 @@
+# Redis with RedisBloom
+docker run -d --name redis-bloom -p 6379:6379 redislabs/rebloom
+
+# MongoDB
+docker run -d --name mongo -p 27017:27017 mongo
+
+
+pip install fastapi[all] pymongo redis
