@@ -1,0 +1,20 @@
+In Redis, you can set a time-to-live (TTL) for any key — after the TTL expires, the key is automatically deleted.
+
+This is useful for:
+    Sessions
+    Login tokens
+    OTP codes
+    Cache entries
+    Rate limiting
+
+SET otp:123456 "user_id_1001" EX 300   # expires in 300 seconds (5 minutes)
+
+
+SET tempkey "value"
+EXPIRE tempkey 60   # expires in 60 seconds
+
+
+TTL tempkey   # returns remaining seconds or -1 if no expiry
+
+
+PERSIST tempkey

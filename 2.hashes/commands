@@ -1,0 +1,11 @@
+A hash in Redis is like a small key-value store within a key.
+Useful for storing objects (like user profiles, product details) as fields with values.
+Common commands: HSET, HGET, HGETALL, HDEL, HEXISTS, HINCRBY, etc.
+
+
+Create or Update: HSET user:1000 name "Alice" age "30" city "Paris"
+Get a single Field: HGET user:1000 name
+Get All: HGETALL user:1000
+If Field Exists: HEXISTS user:1000 age
+Delete a Field: HDEL user:1000 city
+Increment a numeric field: HINCRBY user:1000

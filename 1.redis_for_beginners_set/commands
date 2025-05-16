@@ -8,4 +8,23 @@ SMEMBERS product:views:bowtie42
 
  SMEMBERS product:views:bowtie42
 
- 
+
+
+SADD online_users alice bob charlie
+SMEMBERS online_users
+SISMEMBER online_users bob
+SREM online_users charlie
+SPOP online_users
+SRANDMEMBER online_users 2
+
+
+Set: 
+
+SADD team_a alice bob dave
+SADD team_b bob charlie eve
+SUNION team_a team_b
+SINTER team_a team_b
+SDIFF team_a team_b
+SCARD online_users
+SMOVE team_a team_b dave
+DEL online_users

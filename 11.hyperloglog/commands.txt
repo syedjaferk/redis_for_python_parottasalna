@@ -1,0 +1,10 @@
+PFADD visitors:2025-05-16 user1
+PFADD visitors:2025-05-16 user2
+PFADD visitors:2025-05-16 user3
+PFADD visitors:2025-05-16 user2
+
+PFCOUNT visitors:2025-05-16
+
+
+PFMERGE visitors:week1 visitors:2025-05-12 visitors:2025-05-13 visitors:2025-05-14
+PFCOUNT visitors:week1

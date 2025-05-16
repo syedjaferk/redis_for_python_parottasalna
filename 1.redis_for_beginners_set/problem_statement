@@ -1,0 +1,8 @@
+You want to track how many unique users visited your website each day and possibly analyze overlaps between days.
+
+r.sadd("visitors:2025-05-16", user_id)
+r.scard("visitors:2025-05-16")
+r.sismember("visitors:2025-05-16", user_id)
+r.sinter("visitors:2025-05-12", "visitors:2025-05-13")
+r.sunion("visitors:2025-05-12", "visitors:2025-05-13", ..., "visitors:2025-05-18")
+r.sdiff("visitors:2025-05-13", "visitors:2025-05-12")

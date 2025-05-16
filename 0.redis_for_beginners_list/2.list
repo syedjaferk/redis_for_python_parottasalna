@@ -5,6 +5,13 @@ RPOP key	- Remove & get the rightmost value	RPOP tasks → "task2"
 LRANGE key start stop	- Get a range of elements	LRANGE tasks 0 -1
 LLEN key	- Get list length	LLEN tasks
 
+LREM 
+    LREM key count value
+    count > 0: Remove first count occurrences from head to tail.
+    count < 0: Remove from tail to head.
+    count = 0: Remove all occurrences.
+
+
 1. Message Queue / Task Queue
 2. Logging System
 3. Live Feed / Timeline (FIFO)

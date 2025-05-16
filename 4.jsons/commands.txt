@@ -1,0 +1,22 @@
+Create a JSON doc
+JSON.SET user:1001 $ '{"name": "Alice", "email": "alice@example.com", "age": 28, "preferences": {"theme": "dark", "language": "en"}}'
+
+Get Entire Document
+JSON.GET user:1001
+
+Get a Specific Field
+JSON.GET user:1001 $.name
+
+Update a Field
+JSON.SET user:1001 $.age 29
+
+Increment a number field
+JSON.NUMINCRBY user:1001 $.age 1
+
+Delete a field
+JSON.DEL user:1001 $.preferences.language
+
+
+Delete the entire json doc
+
+JSON.DEL user:1001

@@ -1,0 +1,23 @@
+ZADD key score member [score member ...]	Add one or more members with scores.
+ZRANGE key start stop [WITHSCORES]	Return members in order by rank (index).
+ZRANGEBYSCORE key min max [WITHSCORES]	Return members in order by score range.
+ZREM key member [member ...]	Remove members from the sorted set.
+ZCARD key	Get the number of members in the sorted set.
+ZSCORE key member	Get the score of a member.
+ZREVRANGE key start stop [WITHSCORES]	Return members in reverse order (highest first).
+ZINCRBY key increment member	Increment the score of a member.
+
+
+Leaderboard: 
+============
+
+ZADD game_leaderboard 1500 player1
+ZADD game_leaderboard 3000 player2
+ZADD game_leaderboard 2250 player3
+ZREVRANGE game_leaderboard 0 2 WITHSCORES
+ZREVRANK game_leaderboard player1
+ZREM game_leaderboard player2
+ZCARD game_leaderboard
+ZSCORE game_leaderboard player3
+ZINCRBY game_leaderboard 100 player1
+ZRANGEBYSCORE game_leaderboard 1500 3000 WITHSCORES

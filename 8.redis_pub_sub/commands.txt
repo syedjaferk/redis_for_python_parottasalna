@@ -1,0 +1,3 @@
+SUBSCRIBE notifications
+
+PUBLISH notifications "You have a new friend request!"
