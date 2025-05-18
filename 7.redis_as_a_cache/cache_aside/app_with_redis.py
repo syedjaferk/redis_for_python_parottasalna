@@ -26,6 +26,7 @@ def create_todo(todo: Todo):
 @app.get("/todos/{todo_id}", response_model=Todo)
 def read_item(todo_id: str):
     from_cache = r.hgetall(todo_id)
+    print(from_cache)
     if from_cache:
         return from_cache
     todo = collection.find_one({"id": todo_id}, {'_id':0})

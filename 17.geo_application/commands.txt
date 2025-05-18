@@ -1,0 +1,24 @@
+GEOADD cities 80.2707 13.0827 "Chennai"
+GEOADD cities 77.5946 12.9716 "Bangalore"
+GEOADD cities 78.4867 17.3850 "Hyderabad"
+GEOADD cities 72.8777 19.0760 "Mumbai"
+GEOADD cities 88.3639 22.5726 "Kolkata"
+
+GEOPOS cities Chennai
+
+GEODIST cities Chennai Bangalore km
+
+GEOSEARCH cities FROMLONLAT 80.2707 13.0827 BYRADIUS 500 km
+
+
+GEOSEARCHSTORE nearby_cities cities FROMLONLAT 80.2707 13.0827 BYRADIUS 500 km
+
+GEOSEARCH cities FROMMEMBER Chennai BYRADIUS 500 km
+
+Jafer - Coimbatore, Saravanampati - 11.0794379,76.9781069
+Arunagiri, Chennai, Palliakaranai - 12.9412098,80.1923458
+Jegan - Kanchipuram - 12.8372195,79.6835702
+Ramachandran - Chennai Avadi - 13.114213,80.0475861
+Wijay - Jaffna - 9.6699992,80.0078271
+Azaan - Colombo - 6.9219863,79.7085545
+Pradeep - 

@@ -2,11 +2,12 @@ import redis
 
 r = redis.Redis()
 chat_key = "chat:room1"
+# r.delete(chat_key)
 
 def post_message(user, message):
     text = f"{user}: {message}"
     r.rpush(chat_key, text)
-    r.ltrim(chat_key, -100, -1)  # Keep only last 100 messages
+    r.ltrim(chat_key, -4, -1)  # Keep only last 100 messages
     print(f"Message sent: {text}")
 
 def get_recent_messages():

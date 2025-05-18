@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rapido Captain Tracker</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map" style="height: 90vh;"></div>
+  <div style="padding: 10px;">
+    <label>Search Radius (meters): </label>
+    <input type="range" id="radius" min="50" max="1000" value="100"/>
+    <span id="radiusVal">100</span> m
+  </div>
+
+<script>
+let map = L.map('map').setView([13.0827, 80.2707], 14);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+let searchCircle = null;
+let nearbyMarkers = [];
+let selectedPoint = null;
+
+$("#radius").on("input", function () {
+  $("#radiusVal").text(this.value);
+  if (searchCircle) searchCircle.setRadius(parseInt(this.value));
+  if (selectedPoint) fetchNearby();
+});
+
+map.on('click', function (e) {
+  selectedPoint = [e.latlng.lat, e.latlng.lng];
+  if (searchCircle) map.removeLayer(searchCircle);
+  searchCircle = L.circle(selectedPoint, {
+    radius: parseInt($("#radius").val()),
+    color: "blue",
+    fillOpacity: 0.2
+  }).addTo(map);
+  fetchNearby();
+});
+
+function fetchNearby() {
+  if (!selectedPoint) return;
+  let [lat, lon] = selectedPoint;
+  let radius = $("#radius").val();
+
+  $.get("http://localhost:8000/nearby_captains/", {
+    lat: lat,
+    lon: lon,
+    radius: radius
+  }, function (data) {
+    nearbyMarkers.forEach(m => map.removeLayer(m));
+    nearbyMarkers = [];
+    data.captains.forEach(c => {
+      let marker = L.marker([c.pos[1], c.pos[0]]).addTo(map).bindPopup(c.id);
+      nearbyMarkers.push(marker);
+    });
+  });
+}
+</script>
+</body>
+</html>

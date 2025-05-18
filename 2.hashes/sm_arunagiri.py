@@ -26,8 +26,6 @@ def create_session(session_id, user_id, theme="light", language="en"):
     return access_token
 
 def update_session_activity(session_id):
-    import time
-    time.sleep(5)
     key = f"session:{session_id}"
     if r.exists(key):
         r.hset(key, "last_activity", datetime.utcnow().isoformat())
@@ -58,4 +56,5 @@ update_session_activity("sess123")
 print(get_session("sess123"))
 
 delete_session("sess123")
-print(get_session("sess123"))
+print(get_session("sess123")) 
+

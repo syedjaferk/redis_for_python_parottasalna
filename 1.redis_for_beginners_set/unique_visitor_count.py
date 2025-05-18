@@ -14,6 +14,10 @@ def track_visit(user_id):
     r.sadd(key, user_id)
     print(f"✔️ User '{user_id}' visit recorded for {key}")
 
+def track_visit_on_date(user_id, date):
+    r.sadd(f"visitors:{date}", user_id)
+    print(f"✔️ User '{user_id}' visit recorded for {date}")
+
 def get_today_count():
     count = r.scard(get_key())
     print(f"👥 Unique visitors today: {count}")
@@ -44,6 +48,7 @@ def show_help():
 Usage:
   visit <user_id>                  Record a visit by user_id
   today                            Show today's unique visitor count
+  visit_by_date <date> <user_id>          Record a visits by user on given date
   count <date>                     Show count for a specific date (YYYY-MM-DD)
   intersect <date1> <date2>        Users who visited on both dates
   union <date1> <date2> ...        Union of visitors across dates
@@ -59,6 +64,8 @@ if __name__ == "__main__":
 
     if command == "visit" and len(sys.argv) == 3:
         track_visit(sys.argv[2])
+    elif command == "visit_by_date" and len(sys.argv) == 4:
+        track_visit_on_date(sys.argv[3], sys.argv[2])
     elif command == "today":
         get_today_count()
     elif command == "count" and len(sys.argv) == 3:
